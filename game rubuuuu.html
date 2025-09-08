@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Files: Misteri di Rumah Tua - Level 2</title>
+    <style>
+        /* Gaya Umum */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23333333' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        button {
+            background-color: #8b0000;
+            color: #e0e0e0;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            margin: 10px 5px;
+        }
+        
+        button:hover {
+            background-color: #a52a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1, h2, h3 {
+            color: #c8c8c8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Landing Page */
+        #landing-page {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin-top: 50px;
+            animation: fadeIn 2s ease;
+        }
+        
+        #landing-page h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #c8c8c8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .btn-group {
+            margin-top: 40px;
+        }
+        
+        /* Menu Level */
+        #level-selection {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin-top: 50px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .level-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .level-card {
+            width: 250px;
+            padding: 25px;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #8b0000;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(139, 0, 0, 0.4);
+        }
+        
+        .level-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #8b0000;
+        }
+        
+        .level-difficulty {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #a52a2a;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #2c2c2c;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #8b0000;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Scene Investigasi */
+        #game-scene, #game-scene-level2 {
+            display: none;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .crime-scene {
+            width: 100%;
+            height: 500px;
+            background-color: #2c2c2c;
+            border: 3px solid #444;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23444'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .clickable-object {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .clickable-object:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            animation: none;
+        }
+        
+        .object-table {
+            top: 300px;
+            left: 200px;
+            background-color: rgba(139, 0, 0, 0.5);
+        }
+        
+        .object-cabinet {
+            top: 150px;
+            right: 250px;
+            background-color: rgba(165, 42, 42, 0.5);
+        }
+        
+        .object-window {
+            top: 100px;
+            left: 400px;
+            background-color: rgba(70, 130, 180, 0.5);
+        }
+        
+        .object-photo {
+            bottom: 100px;
+            right: 150px;
+            background-color: rgba(47, 79, 79, 0.5);
+        }
+        
+        .object-floor {
+            bottom: 50px;
+            left: 300px;
+            background-color: rgba(105, 105, 105, 0.5);
+        }
+        
+        /* Panel Inventaris */
+        .inventory-panel {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .inventory-panel h3 {
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        #clue-list, #clue-list-level2 {
+            list-style-type: none;
+        }
+        
+        #clue-list li, #clue-list-level2 li {
+            padding: 8px;
+            border-bottom: 1px dashed #444;
+            animation: fadeIn 0.5s ease;
+            transition: background-color 0.3s;
+        }
+        
+        #clue-list li:hover, #clue-list-level2 li:hover {
+            background-color: #2c2c2c;
+        }
+        
+        /* Popup Clue */
+        .clue-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            padding: 20px;
+            border: 2px solid #8b0000;
+            border-radius: 10px;
+            z-index: 100;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .clue-popup h3 {
+            color: #8b0000;
+            margin-bottom: 15px;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #8b0000;
+            transition: color 0.3s;
+        }
+        
+        .close-popup:hover {
+            color: #ff0000;
+        }
+        
+        /* Interogasi Saksi */
+        #interrogation-scene, #interrogation-scene-level2 {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .witness-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #8b0000;
+            border: 3px solid #8b0000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .question-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .question-buttons button {
+            text-align: left;
+            padding: 15px;
+            background-color: #2c2c2c;
+            transition: all 0.3s;
+        }
+        
+        .question-buttons button:hover {
+            background-color: #8b0000;
+            transform: translateX(5px);
+        }
+        
+        /* Papan Investigasi */
+        #clue-board, #clue-board-level2 {
+            display: none;
+            padding: 30px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .suspects {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .suspect {
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            background-color: #2c2c2c;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .suspect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .suspect-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #8b0000;
+            border: 2px solid #8b0000;
+        }
+        
+        /* Ending Scene */
+        #ending-scene, #ending-scene-level2, #level-complete {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: fadeIn 2s ease;
+        }
+        
+        .ending-image {
+            font-size: 100px;
+            margin-bottom: 30px;
+            color: #8b0000;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #8b0000;
+            box-shadow: 0 5px 30px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(30, 30, 30, 0.8);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .audio-controls:hover {
+            background-color: rgba(139, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Header Game */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-title {
+            font-size: 1.5rem;
+            color: #8b0000;
+        }
+        
+        .game-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .crime-scene {
+                height: 300px;
+            }
+            
+            .clickable-object {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .object-table {
+                top: 200px;
+                left: 50px;
+            }
+            
+            .object-cabinet {
+                top: 100px;
+                right: 50px;
+            }
+            
+            .object-window {
+                top: 70px;
+                left: 150px;
+            }
+            
+            .object-photo {
+                bottom: 70px;
+                right: 50px;
+            }
+            
+            .object-floor {
+                bottom: 30px;
+                left: 100px;
+            }
+            
+            .suspects {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .level-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .level-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Game -->
+        <div class="game-header" id="game-header" style="display: none;">
+            <div class="game-title">Case Files: Misteri di Rumah Tua</div>
+            <div class="game-controls">
+                <button id="menu-btn">Menu Utama</button>
+                <button id="hint-btn-game">Petunjuk</button>
+            </div>
+        </div>
+        
+        <!-- Landing Page -->
+        <div id="landing-page">
+            <h1>Case Files: Misteri di Rumah Tua</h1>
+            <p>Sebuah pembunuhan misterius terjadi di rumah tua keluarga Harrington. Sebagai detektif terbaik, tugas Anda adalah mengungkap kasus ini dengan mencari petunjuk, mewawancarai saksi, dan menemukan pelakunya.</p>
+            <p>Bersiaplah untuk memasuki dunia yang penuh teka-teki dan misteri...</p>
+            <div class="btn-group">
+                <button id="start-btn">Mulai Game</button>
+                <button id="hint-btn">Petunjuk</button>
+                <button id="about-btn">Tentang</button>
+            </div>
+        </div>
+        
+        <!-- Menu Level -->
+        <div id="level-selection">
+            <h2>Pilih Level</h2>
+            <p>Pilih tingkat kesulitan yang sesuai dengan keahlian detektif Anda</p>
+            
+            <div class="level-cards">
+                <div class="level-card" data-level="1">
+                    <div class="level-icon">🔍</div>
+                    <h3>Level 1: Pemula</h3>
+                    <p>Memperkenalkan mekanika game dengan kasus yang relatif sederhana. Cocok untuk detektif pemula.</p>
+                    <div class="level-difficulty">Kesulitan: Sedang</div>
+                </div>
+                
+                <div class="level-card" data-level="2">
+                    <div class="level-icon">🕵️</div>
+                    <h3>Level 2: Advanced</h3>
+                    <p>Tantangan yang lebih kompleks dengan lebih banyak pengecoh dan saksi. Untuk detektif berpengalaman.</p>
+                    <div class="level-difficulty">Kesulitan: Tinggi</div>
+                </div>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 40px;">
+                <button id="back-to-menu">Kembali ke Menu</button>
+            </div>
+        </div>
+        
+        <!-- Scene Investigasi Level 1 -->
+        <div id="game-scene">
+            <h2>TKP: Ruang Tamu Rumah Tua</h2>
+            <p>Klik pada objek-objek yang mencurigakan untuk mengumpulkan petunjuk.</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-level1"></div>
+            </div>
+            
+            <div class="crime-scene">
+                <div class="clickable-object object-table" data-clue="table">📝</div>
+                <div class="clickable-object object-cabinet" data-clue="cabinet">🗄️</div>
+                <div class="clickable-object object-window" data-clue="window">🪟</div>
+                <div class="clickable-object object-photo" data-clue="photo">🖼️</div>
+                <div class="clickable-object object-floor" data-clue="floor">🔍</div>
+            </div>
+            
+            <div class="inventory-panel">
+                <h3>Inventaris Clue <span id="clue-count-level1">(0/5)</span></h3>
+                <ul id="clue-list"></ul>
+            </div>
+            
+            <button id="interrogate-btn">Wawancara Saksi</button>
+            <button id="analyze-btn">Analisis Bukti</button>
+        </div>
+        
+        <!-- Scene Investigasi Level 2 -->
+        <div id="game-scene-level2">
+            <h2>TKP: Ruang Belakang Rumah Tua</h2>
+            <p>Klik pada objek-objek yang mencurigakan untuk mengumpulkan petunjuk. Level ini lebih sulit dengan lebih banyak pengecoh!</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-level2"></div>
+            </div>
+            
+            <div class="crime-scene">
+                <div class="clickable-object object-table" data-clue="safe" style="top: 200px; left: 150px;">💰</div>
+                <div class="clickable-object object-cabinet" data-clue="bookshelf" style="top: 100px; right: 200px;">📚</div>
+                <div class="clickable-object object-window" data-clue="painting" style="top: 150px; left: 400px;">🖼️</div>
+                <div class="clickable-object object-photo" data-clue="trash" style="bottom: 120px; right: 100px;">🗑️</div>
+                <div class="clickable-object object-floor" data-clue="rug" style="bottom: 80px; left: 350px;">🧵</div>
+                <div class="clickable-object object-floor" data-clue="drawer" style="top: 250px; right: 300px; background-color: rgba(47, 79, 79, 0.5);">🗃️</div>
+            </div>
+            
+            <div class="inventory-panel">
+                <h3>Inventaris Clue <span id="clue-count-level2">(0/6)</span></h3>
+                <ul id="clue-list-level2"></ul>
+            </div>
+            
+            <button id="interrogate-btn-level2">Wawancara Saksi</button>
+            <button id="analyze-btn-level2">Analisis Bukti</button>
+        </div>
+        
+        <!-- Popup Clue -->
+        <div class="clue-popup" id="clue-popup">
+            <span class="close-popup">&times;</span>
+            <h3 id="clue-title">Judul Clue</h3>
+            <p id="clue-description">Deskripsi clue akan muncul di sini.</p>
+        </div>
+        
+        <!-- Interogasi Saksi Level 1 -->
+        <div id="interrogation-scene">
+            <h2>Wawancara Saksi</h2>
+            
+            <div class="witness-image">👨</div>
+            <h3 id="witness-name">Nama Saksi</h3>
+            <p id="witness-description">Deskripsi saksi akan muncul di sini.</p>
+            
+            <div class="question-buttons">
+                <button class="question-btn" data-question="1">Apa yang Anda lakukan malam kejadian?</button>
+                <button class="question-btn" data-question="2">Apakah Anda melihat atau mendengar sesuatu yang mencurigakan?</button>
+                <button class="question-btn" data-question="3">Apakah Anda memiliki alibi untuk waktu kejadian?</button>
+            </div>
+            
+            <div id="witness-response">
+                <p>Jawaban saksi akan muncul di sini setelah Anda mengajukan pertanyaan.</p>
+            </div>
+            
+            <button id="next-witness-btn">Saksi Selanjutnya</button>
+            <button id="back-to-scene-btn">Kembali ke TKP</button>
+        </div>
+        
+        <!-- Interogasi Saksi Level 2 -->
+        <div id="interrogation-scene-level2">
+            <h2>Wawancara Saksi - Level 2</h2>
+            
+            <div class="witness-image" id="witness-image-level2">👨</div>
+            <h3 id="witness-name-level2">Nama Saksi</h3>
+            <p id="witness-description-level2">Deskripsi saksi akan muncul di sini.</p>
+            
+            <div class="question-buttons">
+                <button class="question-btn-level2" data-question="1">Apa yang Anda ketahui tentang korban?</button>
+                <button class="question-btn-level2" data-question="2">Apakah Anda memiliki hubungan khusus dengan korban?</button>
+                <button class="question-btn-level2" data-question="3">Di mana Anda berada saat kejadian?</button>
+                <button class="question-btn-level2" data-question="4">Mengapa Anda ada di rumah ini malam itu?</button>
+            </div>
+            
+            <div id="witness-response-level2">
+                <p>Jawaban saksi akan muncul di sini setelah Anda mengajukan pertanyaan.</p>
+            </div>
+            
+            <button id="next-witness-btn-level2">Saksi Selanjutnya</button>
+            <button id="back-to-scene-btn-level2">Kembali ke TKP</button>
+        </div>
+        
+        <!-- Papan Investigasi Level 1 -->
+        <div id="clue-board">
+            <h2>Papan Investigasi</h2>
+            <p>Berdasarkan petunjuk yang telah Anda kumpulkan, siapa yang Anda duga sebagai pelaku?</p>
+            
+            <div class="inventory-panel">
+                <h3>Bukti yang Terkumpul</h3>
+                <ul id="collected-clues"></ul>
+            </div>
+            
+            <div class="suspects">
+                <div class="suspect" data-suspect="butler">
+                    <div class="suspect-image">👨‍💼</div>
+                    <h3>Pak James</h3>
+                    <p>Butler keluarga</p>
+                </div>
+                <div class="suspect" data-suspect="nephew">
+                    <div class="suspect-image">👨</div>
+                    <h3>Robert</h3>
+                    <p>Keponakan korban</p>
+                </div>
+                <div class="suspect" data-suspect="business">
+                    <div class="suspect-image">👩</div>
+                    <h3>Ny. Smith</h3>
+                    <p>Rekan bisnis</p>
+                </div>
+            </div>
+            
+            <button id="back-from-board-btn">Kembali ke TKP</button>
+        </div>
+        
+        <!-- Papan Investigasi Level 2 -->
+        <div id="clue-board-level2">
+            <h2>Papan Investigasi - Level 2</h2>
+            <p>Berdasarkan petunjuk yang telah Anda kumpulkan, siapa yang Anda duga sebagai pelaku? Level ini lebih sulit!</p>
+            
+            <div class="inventory-panel">
+                <h3>Bukti yang Terkumpul</h3>
+                <ul id="collected-clues-level2"></ul>
+            </div>
+            
+            <div class="suspects">
+                <div class="suspect" data-suspect="gardener">
+                    <div class="suspect-image">👨‍🌾</div>
+                    <h3>Pak Budi</h3>
+                    <p>Tukang kebun</p>
+                </div>
+                <div class="suspect" data-suspect="niece">
+                    <div class="suspect-image">👩</div>
+                    <h3>Sofia</h3>
+                    <p>Keponakan korban</p>
+                </div>
+                <div class="suspect" data-suspect="lawyer">
+                    <div class="suspect-image">👨‍💼</div>
+                    <h3>Mr. Wong</h3>
+                    <p>Pengacara korban</p>
+                </div>
+                <div class="suspect" data-suspect="stranger">
+                    <div class="suspect-image">👤</div>
+                    <h3>Orang Asing</h3>
+                    <p>Tidak dikenal</p>
+                </div>
+            </div>
+            
+            <button id="back-from-board-btn-level2">Kembali ke TKP</button>
+        </div>
+        
+        <!-- Level Complete -->
+        <div id="level-complete">
+            <div class="ending-image">🏆</div>
+            <h2>Level 1 Selesai!</h2>
+            <p>Selamat! Anda telah berhasil memecahkan misteri Level 1. Sekarang bersiaplah untuk Level 2 yang lebih menantang!</p>
+            <button id="start-level2-btn">Mulai Level 2</button>
+            <button id="back-to-levels">Kembali ke Pemilihan Level</button>
+        </div>
+        
+        <!-- Ending Scene Level 1 -->
+        <div id="ending-scene">
+            <div class="ending-image" id="ending-img">🔍</div>
+            <h2 id="ending-title">Judul Ending</h2>
+            <p id="ending-description">Deskripsi ending akan muncul di sini.</p>
+            <button id="play-again-btn">Main Lagi</button>
+            <button id="back-to-levels-btn">Kembali ke Pemilihan Level</button>
+        </div>
+        
+        <!-- Ending Scene Level 2 -->
+        <div id="ending-scene-level2">
+            <div class="ending-image" id="ending-img-level2">🔍</div>
+            <h2 id="ending-title-level2">Judul Ending</h2>
+            <p id="ending-description-level2">Deskripsi ending akan muncul di sini.</p>
+            <button id="play-again-btn-level2">Main Lagi</button>
+            <button id="back-to-levels-btn-level2">Kembali ke Pemilihan Level</button>
+        </div>
+    </div>
+    
+    <!-- Kontrol Audio -->
+    <div class="audio-controls" id="audio-toggle">🔇</div>
+    
+    <!-- Modal Petunjuk -->
+    <div class="modal" id="hint-modal">
+        <div class="modal-content">
+            <span class="close-popup">&times;</span>
+            <h2>Petunjuk Permainan</h2>
+            <p>1. Klik pada objek-objek di TKP untuk menemukan petunjuk.</p>
+            <p>2. Wawancarai semua saksi untuk mendapatkan informasi.</p>
+            <p>3. Kumpulkan bukti-bukti dan analisis untuk menemukan pelaku.</p>
+            <p>4. Pilih tersangka yang menurut Anda guilty berdasarkan bukti.</p>
+            <p>5. Gunakan icon speaker di sudut kanan bawah untuk mengontrol audio.</p>
+            <button id="close-hint">Mengerti</button>
+        </div>
+    </div>
+    
+    <!-- Modal Tentang -->
+    <div class="modal" id="about-modal">
+        <div class="modal-content">
+            <span class="close-popup">&times;</span>
+            <h2>Tentang Game</h2>
+            <p>Game Detektif Misteri: Case Files di Rumah Tua</p>
+            <p>Dibuat dengan HTML, CSS, dan JavaScript.</p>
+            <p>© 2023 - Game Interaktif</p>
+            <button id="close-about">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5a8cce7f2f.mp3?filename=ambient-horror-103443.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <audio id="clue-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/19/audio_5d8cda5f2c.mp3?filename=page-turn-120829.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <audio id="success-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2021/10/25/audio_2705c8d7f0.mp3?filename=success-1-6297.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <audio id="failure-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_344c807dbc.mp3?filename=negative-beeps-6008.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <script>
+        // Data Game Level 1
+        const gameDataLevel1 = {
+            currentScene: 'landing',
+            collectedClues: [],
+            currentWitness: 0,
+            witnesses: [
+                {
+                    name: "Pak James - Butler",
+                    description: "Butler yang telah bekerja untuk keluarga Harrington selama 20 tahun.",
+                    responses: {
+                        1: "Saya sedang membersihkan perpustakaan seperti biasa. Tuan Harrington meminta saya menyiapkan anggur untuk tamunya.",
+                        2: "Saya mendengar suara argumen dari ruang tamu sekitar jam 9 malam, tapi itu hal biasa. Tidak ada yang mencurigakan.",
+                        3: "Saya berada di perpustakaan hingga jam 10 malam, kemudian ke kamar saya. Beberapa pelayan lain dapat mengonfirmasi."
+                    }
+                },
+                {
+                    name: "Robert - Keponakan",
+                    description: "Keponakan korban yang sering mengunjungi rumah ini.",
+                    responses: {
+                        1: "Saya sedang menonton TV di kamar saya. Paman mengajak saya datang untuk membicarakan bisnis.",
+                        2: "Saya melihat seorang tamu misterius datang sekitar jam 8:30, tapi tidak melihat wajahnya dengan jelas.",
+                        3: "Saya sendirian di kamar saya sepanjang malam. Tidak ada yang bisa membuktikan."
+                    }
+                },
+                {
+                    name: "Ny. Smith - Rekan Bisnis",
+                    description: "Rekan bisnis korban yang sedang dalam proses negosiasi.",
+                    responses: {
+                        1: "Saya datang untuk pertemuan bisnis dengan Tuan Harrington. Kami berbicara sekitar satu jam lalu saya pergi.",
+                        2: "Semuanya tampak normal saat saya meninggalkan rumah. Saya tidak melihat sesuatu yang tidak biasa.",
+                        3: "Saya pulang langsung setelah pertemuan. Supir taksi dan logika pemesanan dapat membuktikan saya sudah pergi sebelum kejadian."
+                    }
+                }
+            ],
+            clues: {
+                table: {
+                    title: "Surat Wasiat",
+                    description: "Ditemukan draf surat wasiat terbaru yang mengurangi bagian Robert dan meningkatkan bagian donasi untuk amal."
+                },
+                cabinet: {
+                    title: "Kunci Cadangan",
+                    description: "Kunci cadangan lemari besi ditemukan tersembunyi di balik kabinet. Hanya keluarga dan butler yang mengetahuinya."
+                },
+                window: {
+                    title: "Jendela Rusak",
+                    description: "Jendela tampak rusak dari dalam, sepertinya dipaksa dibuka dari dalam rumah."
+                },
+                photo: {
+                    title: "Foto Terkoyak",
+                    description: "Foto Robert dan almarhum istrinya terkoyak dan dibuang di keranjang sampah."
+                },
+                floor: {
+                    title: "Noda Darah",
+                    description: "Ada noda darah kecil di karpet dekat jendela, mengarah ke luar rumah."
+                }
+            },
+            correctSuspect: "nephew" // Robert adalah pelakunya
+        };
+
+        // Data Game Level 2
+        const gameDataLevel2 = {
+            currentScene: 'level2',
+            collectedClues: [],
+            currentWitness: 0,
+            witnesses: [
+                {
+                    name: "Pak Budi - Tukang Kebun",
+                    description: "Tukang kebun yang bekerja di rumah Harrington selama 5 tahun.",
+                    responses: {
+                        1: "Saya mengenal Tuan Harrington sebagai orang yang baik tapi tertutup. Dia sering menerima tamu misterius.",
+                        2: "Saya hanya hubungan profesional. Dia membayar saya untuk merawat kebunnya.",
+                        3: "Saya sedang memangkas tanaman di belakang rumah. Saya melihat cahaya di ruang belakang sekitar jam 9 malam.",
+                        4: "Saya tinggal di pondok kecil di belakang rumah. Saya mendengar suara teriakan sekitar jam 10 malam."
+                    }
+                },
+                {
+                    name: "Sofia - Keponakan",
+                    description: "Keponakan korban yang tinggal di rumahnya sejak orang tuanya meninggal.",
+                    responses: {
+                        1: "Paman saya adalah orang yang baik tapi keras kepala. Dia sedang memiliki masalah dengan beberapa rekan bisnis.",
+                        2: "Dia adalah wali saya sejak orang tua saya meninggal. Tapi kami sering bertengkar tentang masa depan saya.",
+                        3: "Saya sedang belajar di kamar saya. Saya mendengar suara dari ruang belakang tapi mengira itu hanya paman saya.",
+                        4: "Ini adalah rumah saya. Saya tinggal di sini sejak kecil."
+                    }
+                },
+                {
+                    name: "Mr. Wong - Pengacara",
+                    description: "Pengacara keluarga Harrington yang mengurus urusan hukum korban.",
+                    responses: {
+                        1: "Tuan Harrington adalah klien saya selama 10 tahun. Dia sedang menyiapkan perubahan surat wasiat.",
+                        2: "Hubungan kami murni profesional. Saya hanya menangani urusan hukumnya.",
+                        3: "Saya sudah pulang ke rumah saya pada sore hari. Istri saya dapat membuktikan saya di rumah malam itu.",
+                        4: "Saya ada pertemuan dengan Tuan Harrington sore hari untuk membahas perubahan surat wasiat."
+                    }
+                },
+                {
+                    name: "Tamu Misterius",
+                    description: "Seorang tamu yang tidak diketahui identitasnya, terlihat di sekitar rumah malam itu.",
+                    responses: {
+                        1: "Saya tidak mengenal korban dengan baik. Kami hanya bertemu beberapa kali.",
+                        2: "Kami memiliki urusan bisnis yang belum selesai. Itu saja.",
+                        3: "Saya hanya lewat di depan rumah itu. Saya tidak masuk ke dalam.",
+                        4: "Saya diundang untuk pertemuan bisnis, tapi tidak jadi bertemu karena suatu hal."
+                    }
+                }
+            ],
+            clues: {
+                safe: {
+                    title: "Brankas Terbuka",
+                    description: "Brankas di ruang belakang terbuka dan kosong. Sepertinya ada yang mencuri isinya."
+                },
+                bookshelf: {
+                    title: "Buku Harian",
+                    description: "Buku harian korban yang disembunyikan di balik rak buku. Berisi catatan tentang ketakutannya pada seseorang."
+                },
+                painting: {
+                    title: "Lukisan Tersembunyi",
+                    description: "Lukisan yang tergantung miring, menunjukkan brankas tersembunyi di belakangnya."
+                },
+                trash: {
+                    title: "Kertas Robek",
+                    description: "Kertas yang robek-robek di keranjang sampah, berisi tulisan tentang ancaman pembunuhan."
+                },
+                rug: {
+                    title: "Noda Kimia",
+                    description: "Noda kimia aneh di karpet, sepertinya dari bahan pembersih yang digunakan untuk menghapus jejak."
+                },
+                drawer: {
+                    title: "Surat Ancaman",
+                    description: "Surat ancaman yang disembunyikan di laci, berisi ancaman akan membongkar rahasia korban."
+                }
+            },
+            correctSuspect: "niece" // Sofia adalah pelakunya di level 2
+        };
+
+        // Elemen DOM
+        const landingPage = document.getElementById('landing-page');
+        const levelSelection = document.getElementById('level-selection');
+        const gameScene = document.getElementById('game-scene');
+        const gameSceneLevel2 = document.getElementById('game-scene-level2');
+        const interrogationScene = document.getElementById('interrogation-scene');
+        const interrogationSceneLevel2 = document.getElementById('interrogation-scene-level2');
+        const clueBoard = document.getElementById('clue-board');
+        const clueBoardLevel2 = document.getElementById('clue-board-level2');
+        const endingScene = document.getElementById('ending-scene');
+        const endingSceneLevel2 = document.getElementById('ending-scene-level2');
+        const levelComplete = document.getElementById('level-complete');
+        const clueList = document.getElementById('clue-list');
+        const clueListLevel2 = document.getElementById('clue-list-level2');
+        const collectedClues = document.getElementById('collected-clues');
+        const collectedCluesLevel2 = document.getElementById('collected-clues-level2');
+        const cluePopup = document.getElementById('clue-popup');
+        const clueTitle = document.getElementById('clue-title');
+        const clueDescription = document.getElementById('clue-description');
+        const witnessName = document.getElementById('witness-name');
+        const witnessDescription = document.getElementById('witness-description');
+        const witnessResponse = document.getElementById('witness-response');
+        const witnessNameLevel2 = document.getElementById('witness-name-level2');
+        const witnessDescriptionLevel2 = document.getElementById('witness-description-level2');
+        const witnessResponseLevel2 = document.getElementById('witness-response-level2');
+        const witnessImageLevel2 = document.getElementById('witness-image-level2');
+        const endingTitle = document.getElementById('ending-title');
+        const endingDescription = document.getElementById('ending-description');
+        const endingImg = document.getElementById('ending-img');
+        const endingTitleLevel2 = document.getElementById('ending-title-level2');
+        const endingDescriptionLevel2 = document.getElementById('ending-description-level2');
+        const endingImgLevel2 = document.getElementById('ending-img-level2');
+        const hintModal = document.getElementById('hint-modal');
+        const aboutModal = document.getElementById('about-modal');
+        const audioToggle = document.getElementById('audio-toggle');
+        const gameHeader = document.getElementById('game-header');
+        const progressLevel1 = document.getElementById('progress-level1');
+        const progressLevel2 = document.getElementById('progress-level2');
+        const clueCountLevel1 = document.getElementById('clue-count-level1');
+        const clueCountLevel2 = document.getElementById('clue-count-level2');
+
+        // Variabel global untuk state game
+        let currentLevel = 1;
+        let musicPlaying = false;
+
+        // Inisialisasi Game
+        function initGame() {
+            // Event listeners untuk tombol utama
+            document.getElementById('start-btn').addEventListener('click', showLevelSelection);
+            document.getElementById('hint-btn').addEventListener('click', showHint);
+            document.getElementById('about-btn').addEventListener('click', showAbout);
+            
+            // Event listeners untuk pemilihan level
+            document.querySelectorAll('.level-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const level = card.getAttribute('data-level');
+                    startGame(level);
+                });
+            });
+            
+            document.getElementById('back-to-menu').addEventListener('click', backToMainMenu);
+            document.getElementById('back-to-levels').addEventListener('click', backToLevelSelection);
+            document.getElementById('back-to-levels-btn').addEventListener('click', backToLevelSelection);
+            document.getElementById('back-to-levels-btn-level2').addEventListener('click', backToLevelSelection);
+            document.getElementById('menu-btn').addEventListener('click', backToLevelSelection);
+            document.getElementById('hint-btn-game').addEventListener('click', showHint);
+            
+            // Event listeners untuk objek yang dapat diklik Level 1
+            const clickableObjects = document.querySelectorAll('#game-scene .clickable-object');
+            clickableObjects.forEach(object => {
+                object.addEventListener('click', () => {
+                    const clueId = object.getAttribute('data-clue');
+                    showClue(clueId, 1);
+                });
+            });
+            
+            // Event listeners untuk objek yang dapat diklik Level 2
+            const clickableObjectsLevel2 = document.querySelectorAll('#game-scene-level2 .clickable-object');
+            clickableObjectsLevel2.forEach(object => {
+                object.addEventListener('click', () => {
+                    const clueId = object.getAttribute('data-clue');
+                    showClue(clueId, 2);
+                });
+            });
+            
+            // Event listeners untuk tombol-tombol navigasi Level 1
+            document.getElementById('interrogate-btn').addEventListener('click', startInterrogation);
+            document.getElementById('analyze-btn').addEventListener('click', showClueBoard);
+            document.getElementById('next-witness-btn').addEventListener('click', nextWitness);
+            document.getElementById('back-to-scene-btn').addEventListener('click', backToScene);
+            document.getElementById('back-from-board-btn').addEventListener('click', backToSceneFromBoard);
+            document.getElementById('play-again-btn').addEventListener('click', restartGame);
+            
+            // Event listeners untuk tombol-tombol navigasi Level 2
+            document.getElementById('interrogate-btn-level2').addEventListener('click', startInterrogationLevel2);
+            document.getElementById('analyze-btn-level2').addEventListener('click', showClueBoardLevel2);
+            document.getElementById('next-witness-btn-level2').addEventListener('click', nextWitnessLevel2);
+            document.getElementById('back-to-scene-btn-level2').addEventListener('click', backToSceneFromInterrogationLevel2);
+            document.getElementById('back-from-board-btn-level2').addEventListener('click', backToSceneFromBoardLevel2);
+            document.getElementById('play-again-btn-level2').addEventListener('click', restartGame);
+            document.getElementById('start-level2-btn').addEventListener('click', startLevel2);
+            
+            // Event listeners untuk pertanyaan saksi Level 1
+            const questionButtons = document.querySelectorAll('.question-btn');
+            questionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const questionId = button.getAttribute('data-question');
+                    askQuestion(questionId, 1);
+                });
+            });
+            
+            // Event listeners untuk pertanyaan saksi Level 2
+            const questionButtonsLevel2 = document.querySelectorAll('.question-btn-level2');
+            questionButtonsLevel2.forEach(button => {
+                button.addEventListener('click', () => {
+                    const questionId = button.getAttribute('data-question');
+                    askQuestion(questionId, 2);
+                });
+            });
+            
+            // Event listeners untuk memilih tersangka Level 1
+            const suspectButtons = document.querySelectorAll('#clue-board .suspect');
+            suspectButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const suspectId = button.getAttribute('data-suspect');
+                    accuseSuspect(suspectId, 1);
+                });
+            });
+            
+            // Event listeners untuk memilih tersangka Level 2
+            const suspectButtonsLevel2 = document.querySelectorAll('#clue-board-level2 .suspect');
+            suspectButtonsLevel2.forEach(button => {
+                button.addEventListener('click', () => {
+                    const suspectId = button.getAttribute('data-suspect');
+                    accuseSuspect(suspectId, 2);
+                });
+            });
+            
+            // Event listeners untuk menutup popup
+            document.querySelectorAll('.close-popup').forEach(closeBtn => {
+                closeBtn.addEventListener('click', () => {
+                    cluePopup.style.display = 'none';
+                    hintModal.style.display = 'none';
+                    aboutModal.style.display = 'none';
+                });
+            });
+            
+            document.getElementById('close-hint').addEventListener('click', () => {
+                hintModal.style.display = 'none';
+            });
+            
+            document.getElementById('close-about').addEventListener('click', () => {
+                aboutModal.style.display = 'none';
+            });
+            
+            // Kontrol audio
+            audioToggle.addEventListener('click', toggleAudio);
+            
+            // Tutup modal ketika klik di luar konten
+            window.addEventListener('click', (event) => {
+                if (event.target === hintModal) {
+                    hintModal.style.display = 'none';
+                }
+                if (event.target === aboutModal) {
+                    aboutModal.style.display = 'none';
+                }
+                if (event.target === cluePopup) {
+                    cluePopup.style.display = 'none';
+                }
+            });
+            
+            // Coba memutar musik latar
+            try {
+                const bgMusic = document.getElementById('bg-music');
+                bgMusic.volume = 0.3;
+                // Mulai dengan musik dimatikan
+                bgMusic.pause();
+            } catch (error) {
+                console.log("Error audio:", error);
+            }
+        }
+
+        // Fungsi untuk menampilkan pemilihan level
+        function showLevelSelection() {
+            landingPage.style.display = 'none';
+            levelSelection.style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke menu utama
+        function backToMainMenu() {
+            levelSelection.style.display = 'none';
+            gameScene.style.display = 'none';
+            gameSceneLevel2.style.display = 'none';
+            gameHeader.style.display = 'none';
+            landingPage.style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke pemilihan level
+        function backToLevelSelection() {
+            gameScene.style.display = 'none';
+            gameSceneLevel2.style.display = 'none';
+            endingScene.style.display = 'none';
+            endingSceneLevel2.style.display = 'none';
+            levelComplete.style.display = 'none';
+            gameHeader.style.display = 'none';
+            levelSelection.style.display = 'block';
+        }
+
+        // Fungsi untuk mengontrol audio
+        function toggleAudio() {
+            const bgMusic = document.getElementById('bg-music');
+            
+            if (musicPlaying) {
+                bgMusic.pause();
+                audioToggle.textContent = '🔇';
+                musicPlaying = false;
+            } else {
+                // Hanya memutar audio setelah interaksi pengguna
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        audioToggle.textContent = '🔊';
+                        musicPlaying = true;
+                    }).catch(error => {
+                        console.log("Autoplay dicegah:", error);
+                        // Tampilkan pesan bahwa audio membutuhkan interaksi
+                        alert("Klik tombol speaker untuk memutar musik. Beberapa browser memblokir audio otomatis.");
+                    });
+                }
+            }
+        }
+
+        // Fungsi untuk memutar suara clue
+        function playClueSound() {
+            const clueSound = document.getElementById('clue-sound');
+            clueSound.currentTime = 0;
+            clueSound.play().catch(error => {
+                console.log("Error memutar suara clue:", error);
+            });
+        }
+
+        // Fungsi untuk memutar suara success
+        function playSuccessSound() {
+            const successSound = document.getElementById('success-sound');
+            successSound.currentTime = 0;
+            successSound.play().catch(error => {
+                console.log("Error memutar suara sukses:", error);
+            });
+        }
+
+        // Fungsi untuk memutar suara failure
+        function playFailureSound() {
+            const failureSound = document.getElementById('failure-sound');
+            failureSound.currentTime = 0;
+            failureSound.play().catch(error => {
+                console.log("Error memutar suara gagal:", error);
+            });
+        }
+
+        // Fungsi untuk memulai game
+        function startGame(level) {
+            levelSelection.style.display = 'none';
+            gameHeader.style.display = 'flex';
+            
+            currentLevel = parseInt(level);
+            
+            if (currentLevel === 1) {
+                gameScene.style.display = 'block';
+                gameSceneLevel2.style.display = 'none';
+                
+                // Reset game state
+                gameDataLevel1.collectedClues = [];
+                gameDataLevel1.currentWitness = 0;
+                updateClueList(1);
+                updateProgressBar(1);
+            } else {
+                gameScene.style.display = 'none';
+                gameSceneLevel2.style.display = 'block';
+                
+                // Reset game state untuk level 2
+                gameDataLevel2.collectedClues = [];
+                gameDataLevel2.currentWitness = 0;
+                updateClueList(2);
+                updateProgressBar(2);
+            }
+            
+            // Coba putar musik
+            if (musicPlaying) {
+                const bgMusic = document.getElementById('bg-music');
+                bgMusic.play().catch(error => {
+                    console.log("Autoplay dicegah:", error);
+                });
+            }
+        }
+
+        // Fungsi untuk memulai Level 2 dari level complete
+        function startLevel2() {
+            levelComplete.style.display = 'none';
+            gameSceneLevel2.style.display = 'block';
+            currentLevel = 2;
+            
+            // Reset game state untuk level 2
+            gameDataLevel2.collectedClues = [];
+            gameDataLevel2.currentWitness = 0;
+            updateClueList(2);
+            updateProgressBar(2);
+        }
+
+        // Fungsi untuk menampilkan petunjuk
+        function showClue(clueId, level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            const clue = gameData.clues[clueId];
+            
+            // Jika clue belum dikumpulkan, tambahkan ke inventaris
+            if (!gameData.collectedClues.includes(clueId)) {
+                gameData.collectedClues.push(clueId);
+                updateClueList(level);
+                updateProgressBar(level);
+                
+                // Putar suara clue
+                playClueSound();
+            }
+            
+            // Tampilkan popup clue
+            clueTitle.textContent = clue.title;
+            clueDescription.textContent = clue.description;
+            cluePopup.style.display = 'block';
+        }
+
+        // Fungsi untuk memperbarui progress bar
+        function updateProgressBar(level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            const totalClues = Object.keys(gameData.clues).length;
+            const progress = (gameData.collectedClues.length / totalClues) * 100;
+            
+            if (level === 1) {
+                progressLevel1.style.width = `${progress}%`;
+                clueCountLevel1.textContent = `(${gameData.collectedClues.length}/${totalClues})`;
+            } else {
+                progressLevel2.style.width = `${progress}%`;
+                clueCountLevel2.textContent = `(${gameData.collectedClues.length}/${totalClues})`;
+            }
+        }
+
+        // Fungsi untuk memperbarui daftar clue di inventaris
+        function updateClueList(level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            const clueListElement = level === 1 ? clueList : clueListLevel2;
+            const totalClues = Object.keys(gameData.clues).length;
+            
+            clueListElement.innerHTML = '';
+            
+            gameData.collectedClues.forEach(clueId => {
+                const clue = gameData.clues[clueId];
+                const clueItem = document.createElement('li');
+                clueItem.textContent = clue.title;
+                clueListElement.appendChild(clueItem);
+            });
+            
+            // Jika belum ada clue, tambahkan pesan
+            if (gameData.collectedClues.length === 0) {
+                const emptyMessage = document.createElement('li');
+                emptyMessage.textContent = 'Belum ada clue yang ditemukan.';
+                clueListElement.appendChild(emptyMessage);
+            }
+            
+            // Juga update collected clues untuk papan investigasi
+            const collectedCluesElement = level === 1 ? collectedClues : collectedCluesLevel2;
+            collectedCluesElement.innerHTML = '';
+            
+            gameData.collectedClues.forEach(clueId => {
+                const clue = gameData.clues[clueId];
+                const clueItem = document.createElement('li');
+                clueItem.textContent = clue.title;
+                collectedCluesElement.appendChild(clueItem);
+            });
+            
+            if (gameData.collectedClues.length === 0) {
+                const emptyMessage = document.createElement('li');
+                emptyMessage.textContent = 'Belum ada clue yang ditemukan.';
+                collectedCluesElement.appendChild(emptyMessage);
+            }
+        }
+
+        // Fungsi untuk memulai interogasi Level 1
+        function startInterrogation() {
+            gameScene.style.display = 'none';
+            interrogationScene.style.display = 'block';
+            
+            // Tampilkan saksi pertama
+            showWitness(0, 1);
+        }
+
+        // Fungsi untuk memulai interogasi Level 2
+        function startInterrogationLevel2() {
+            gameSceneLevel2.style.display = 'none';
+            interrogationSceneLevel2.style.display = 'block';
+            
+            // Tampilkan saksi pertama
+            showWitness(0, 2);
+        }
+
+        // Fungsi untuk menampilkan saksi
+        function showWitness(index, level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            
+            if (index < gameData.witnesses.length) {
+                const witness = gameData.witnesses[index];
+                
+                if (level === 1) {
+                    witnessName.textContent = witness.name;
+                    witnessDescription.textContent = witness.description;
+                    witnessResponse.innerHTML = '<p>Ajukan pertanyaan kepada saksi untuk mendapatkan informasi.</p>';
+                } else {
+                    witnessNameLevel2.textContent = witness.name;
+                    witnessDescriptionLevel2.textContent = witness.description;
+                    witnessResponseLevel2.innerHTML = '<p>Ajukan pertanyaan kepada saksi untuk mendapatkan informasi.</p>';
+                    
+                    // Set ikon berbeda untuk setiap saksi di level 2
+                    const icons = ['👨‍🌾', '👩', '👨‍💼', '👤'];
+                    witnessImageLevel2.textContent = icons[index];
+                }
+                
+                gameData.currentWitness = index;
+            }
+        }
+
+        // Fungsi untuk mengajukan pertanyaan kepada saksi
+        function askQuestion(questionId, level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            const witness = gameData.witnesses[gameData.currentWitness];
+            
+            if (level === 1) {
+                witnessResponse.innerHTML = `<p>${witness.responses[questionId]}</p>`;
+            } else {
+                witnessResponseLevel2.innerHTML = `<p>${witness.responses[questionId]}</p>`;
+            }
+        }
+
+        // Fungsi untuk pindah ke saksi berikutnya
+        function nextWitness() {
+            const nextIndex = gameDataLevel1.currentWitness + 1;
+            if (nextIndex < gameDataLevel1.witnesses.length) {
+                showWitness(nextIndex, 1);
+            } else {
+                // Jika sudah mewawancarai semua saksi, kembali ke TKP
+                backToScene();
+            }
+        }
+
+        // Fungsi untuk pindah ke saksi berikutnya Level 2
+        function nextWitnessLevel2() {
+            const nextIndex = gameDataLevel2.currentWitness + 1;
+            if (nextIndex < gameDataLevel2.witnesses.length) {
+                showWitness(nextIndex, 2);
+            } else {
+                // Jika sudah mewawancarai semua saksi, kembali ke TKP
+                backToSceneFromInterrogationLevel2();
+            }
+        }
+
+        // Fungsi untuk kembali ke TKP dari interogasi Level 1
+        function backToScene() {
+            interrogationScene.style.display = 'none';
+            gameScene.style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke TKP dari interogasi Level 2
+        function backToSceneFromInterrogationLevel2() {
+            interrogationSceneLevel2.style.display = 'none';
+            gameSceneLevel2.style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke TKP dari papan investigasi Level 1
+        function backToSceneFromBoard() {
+            clueBoard.style.display = 'none';
+            gameScene.style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke TKP dari papan investigasi Level 2
+        function backToSceneFromBoardLevel2() {
+            clueBoardLevel2.style.display = 'none';
+            gameSceneLevel2.style.display = 'block';
+        }
+
+        // Fungsi untuk menampilkan papan investigasi Level 1
+        function showClueBoard() {
+            gameScene.style.display = 'none';
+            clueBoard.style.display = 'block';
+        }
+
+        // Fungsi untuk menampilkan papan investigasi Level 2
+        function showClueBoardLevel2() {
+            gameSceneLevel2.style.display = 'none';
+            clueBoardLevel2.style.display = 'block';
+        }
+
+        // Fungsi untuk menuduh tersangka
+        function accuseSuspect(suspectId, level) {
+            const gameData = level === 1 ? gameDataLevel1 : gameDataLevel2;
+            const correctSuspect = gameData.correctSuspect;
+            
+            if (level === 1) {
+                clueBoard.style.display = 'none';
+            } else {
+                clueBoardLevel2.style.display = 'none';
+            }
+            
+            if (suspectId === correctSuspect) {
+                // Ending berhasil
+                if (level === 1) {
+                    endingScene.style.display = 'block';
+                    endingImg.textContent = '✅';
+                    endingTitle.textContent = 'Kasus Berhasil Dipecahkan!';
+                    endingDescription.textContent = 'Selamat! Anda telah membongkar misteri pembunuhan di rumah tua. Robert, keponakan korban, terbukti melakukan pembunuhan karena masalah warisan. Tersangka telah ditangkap.';
+                    playSuccessSound();
+                } else {
+                    endingSceneLevel2.style.display = 'block';
+                    endingImgLevel2.textContent = '✅';
+                    endingTitleLevel2.textContent = 'Level 2 Berhasil Diselesaikan!';
+                    endingDescriptionLevel2.textContent = 'Luar biasa! Anda telah memecahkan kasus level 2 yang lebih rumit. Sofia, keponakan korban, terbukti melakukan pembunuhan karena ingin menguasai warisan sebelum surat wasiat diubah.';
+                    playSuccessSound();
+                }
+            } else {
+                // Ending gagal
+                if (level === 1) {
+                    endingScene.style.display = 'block';
+                    endingImg.textContent = '❌';
+                    endingTitle.textContent = 'Kamu Gagal Memecahkan Kasus';
+                    endingDescription.textContent = 'Sayang sekali, bukti-bukti yang Anda kumpulkan tidak cukup kuat atau Anda menuduh orang yang salah. Misteri tetap belum terungkap, dan pelaku yang sesungguhnya masih bebas.';
+                    playFailureSound();
+                } else {
+                    endingSceneLevel2.style.display = 'block';
+                    endingImgLevel2.textContent = '❌';
+                    endingTitleLevel2.textContent = 'Kamu Gagal Memecahkan Kasus Level 2';
+                    endingDescriptionLevel2.textContent = 'Sayang sekali, Anda salah menuduh. Bukti-bukti yang ada tidak mendukung kesimpulan Anda. Coba analisis lagi bukti-bukti dengan lebih hati-hati.';
+                    playFailureSound();
+                }
+            }
+        }
+
+        // Fungsi untuk memulai kembali game
+        function restartGame() {
+            endingScene.style.display = 'none';
+            endingSceneLevel2.style.display = 'none';
+            landingPage.style.display = 'block';
+            gameHeader.style.display = 'none';
+            
+            // Reset game state
+            gameDataLevel1.collectedClues = [];
+            gameDataLevel1.currentWitness = 0;
+            gameDataLevel2.collectedClues = [];
+            gameDataLevel2.currentWitness = 0;
+            currentLevel = 1;
+        }
+
+        // Fungsi untuk menampilkan petunjuk
+        function showHint() {
+            hintModal.style.display = 'block';
+        }
+
+        // Fungsi untuk menampilkan tentang game
+        function showAbout() {
+            aboutModal.style.display = 'block';
+        }
+
+        // Jalankan inisialisasi game ketika halaman dimuat
+        window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>
